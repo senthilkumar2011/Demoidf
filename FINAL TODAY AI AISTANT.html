@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IDFC FIRST Bank - Banking Made Simple</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x:hidden;
+      background: #fff;
+    }
+    
+    .header { 
+      background:#fff; 
+      box-shadow:0 2px 15px rgba(0,0,0,.08); 
+      position:sticky; 
+      top:0; 
+      z-index:100;
+      transition: all 0.3s ease;
+    }
+    
+    .header-top { 
+      background: linear-gradient(135deg, #8B0000 0%, #A01010 100%);
+      color:#fff; 
+      padding:10px 0; 
+      font-size:13px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+    
+    .header-top .container { 
+      max-width:1200px; 
+      margin:0 auto; 
+      padding:0 20px; 
+      display:flex; 
+      justify-content:space-between;
+      align-items: center;
+    }
+    
+    .header-top-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.95;
+      transition: opacity 0.3s;
+    }
+    
+    .header-top-item:hover {
+      opacity: 1;
+    }
+    
+    .nav-bar { 
+      max-width:1200px; 
+      margin:0 auto; 
+      padding:18px 20px; 
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center;
+    }
+    
+    .logo { 
+      font-size:26px; 
+      font-weight:700; 
+      color:#8B0000;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+
+    
+    .nav-menu { 
+      list-style:none; 
+      display:flex; 
+      gap:35px;
+    }
+    
+    .nav-menu a { 
+      text-decoration:none; 
+      color:#333; 
+      font-weight:500;
+      font-size: 15px;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #8B0000;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+      color: #8B0000;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .hero-banner {
+      position: relative;
+      height: 550px;
+      background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%);
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      position: absolute;
+      left: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      max-width: 600px;
+      z-index: 2;
+    }
+    
+    .hero-content h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      animation: fadeInLeft 1s ease;
+    }
+    
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      animation: fadeInLeft 1s ease 0.2s both;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      animation: fadeInLeft 1s ease 0.4s both;
+    }
+    
+    .btn-primary {
+      background: #fff;
+      color: #8B0000;
+      padding: 16px 36px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      padding: 16px 36px;
+      border: 2px solid #fff;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .hero-image {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45%;
+      height: 450px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%23ffffff" opacity="0.1" x="50" y="80" width="300" height="180" rx="15"/><rect fill="%23ffffff" opacity="0.15" x="70" y="100" width="260" height="140" rx="10"/><circle fill="%23ffffff" opacity="0.2" cx="120" cy="150" r="30"/><rect fill="%23ffffff" opacity="0.2" x="170" y="130" width="140" height="15" rx="7"/><rect fill="%23ffffff" opacity="0.15" x="170" y="160" width="100" height="12" rx="6"/><text x="200" y="220" font-family="Arial" font-size="40" fill="%23ffffff" opacity="0.3">💳</text></svg>') center/contain no-repeat;
+      animation: floatHero 6s ease-in-out infinite;
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes floatHero {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      50% { transform: translateY(-50%) translateX(-20px); }
+    }
+    
+    .services-section {
+      padding: 80px 20px;
+      background: #f8f9fa;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      color: #333;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 35px rgba(139,0,0,0.15);
+    }
+    
+    .service-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .service-card h3 {
+      color: #8B0000;
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .service-card p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    
+    .products-section {
+      padding: 80px 20px;
+      background: #fff;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+    
+    .product-card {
+      background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%);
+      color: #fff;
+      padding: 35px 25px;
+      border-radius: 16px;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transition: all 0.5s;
+    }
+    
+    .product-card:hover::before {
+      transform: translate(-20px, -20px);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(139,0,0,0.3);
+    }
+    
+    .product-card h4 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .product-card p {
+      font-size: 14px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #8B0000;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-section ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #fff;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #999;
+      font-size: 14px;
+    }
+    
+    .voice-bot-widget { 
+      position:fixed; 
+      bottom:30px; 
+      right:30px; 
+      z-index:1000;
+    }
+    
+    .bot-button { 
+      width:70px; 
+      height:70px; 
+      border-radius:50%; 
+      background:linear-gradient(135deg,#8B0000,#C41E3A); 
+      color:#fff; 
+      border:none; 
+      font-size:32px; 
+      cursor:pointer; 
+      box-shadow:0 6px 25px rgba(139,0,0,.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bot-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .bot-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(139,0,0,.6);
+    }
+    
+    .bot-button:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .bot-button.listening { 
+      background:#00C853; 
+      animation:pulse 1.5s infinite; 
+      box-shadow: 0 6px 25px rgba(0,200,83,.5);
+    }
+    
+    .bot-button.processing { 
+      background:#FFA000;
+      box-shadow: 0 6px 25px rgba(255,160,0,.5);
+    }
+    
+    @keyframes pulse { 
+      0%,100%{transform:scale(1); box-shadow: 0 6px 25px rgba(0,200,83,.5);} 
+      50%{transform:scale(1.15); box-shadow: 0 8px 35px rgba(0,200,83,.7);} 
+    }
+    
+    .chat-interface { 
+      position:fixed; 
+      bottom:120px; 
+      right:30px; 
+      width:420px; 
+      height:600px; 
+      background:#fff; 
+      border-radius:20px; 
+      box-shadow:0 15px 50px rgba(0,0,0,.25); 
+      display:none; 
+      flex-direction:column; 
+      overflow:hidden;
+      animation: slideUp 0.4s ease-out;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .chat-interface.active { display:flex; }
+    
+    .chat-header { 
+      background:linear-gradient(135deg,#8B0000,#C41E3A); 
+      color:#fff; 
+      padding:18px 20px; 
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .language-selector { 
+      display:flex; 
+      gap:10px; 
+      align-items:center; 
+    }
+    
+    .lang-btn { 
+      background:rgba(255,255,255,.25); 
+      border:2px solid rgba(255,255,255,.4); 
+      color:#fff; 
+      padding:10px 20px; 
+      border-radius:20px; 
+      font-size:13px; 
+      cursor:pointer; 
+      font-weight:600; 
+      transition:all 0.3s ease;
+    }
+    
+    .lang-btn:hover { 
+      background:rgba(255,255,255,.35); 
+      border-color:rgba(255,255,255,.6);
+      transform: translateY(-2px);
+    }
+    
+    .lang-btn.active { 
+      background:#fff; 
+      color:#8B0000; 
+      border-color:#fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .close-chat { 
+      background:rgba(255,255,255,.2); 
+      border:none; 
+      color:#fff; 
+      font-size:28px; 
+      cursor:pointer; 
+      margin-left:15px; 
+      line-height:1;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .close-chat:hover {
+      background: rgba(255,255,255,0.3);
+      transform: rotate(90deg);
+    }
+    
+    .status-indicator { 
+      padding:12px 18px; 
+      margin:12px; 
+      border-radius:20px; 
+      font-size:13px; 
+      background:#f0f0f0; 
+      color:#666; 
+      text-align:center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .status-indicator.listening { 
+      background:linear-gradient(135deg, #E8F5E9, #C8E6C9); 
+      color:#2E7D32;
+      animation: statusPulse 2s infinite;
+    }
+    
+    .status-indicator.processing { 
+      background:linear-gradient(135deg, #FFF3E0, #FFE0B2); 
+      color:#E65100; 
+    }
+    
+    .status-indicator.speaking { 
+      background:linear-gradient(135deg, #E3F2FD, #BBDEFB); 
+      color:#1565C0; 
+    }
+    
+    @keyframes statusPulse {
+      0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+      50% { box-shadow: 0 4px 15px rgba(46,125,50,0.3); }
+    }
+    
+    .chat-messages { 
+      flex:1; 
+      overflow-y:auto; 
+      padding:20px; 
+      background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .chat-messages::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    
+    .message { 
+      display:flex; 
+      gap:12px; 
+      margin-bottom:16px;
+      animation: messageSlide 0.3s ease-out;
+    }
+    
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .message.user { flex-direction:row-reverse; }
+    
+    .message-bubble { 
+      max-width:75%; 
+      padding:12px 16px; 
+      border-radius:18px; 
+      line-height:1.6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .message.user .message-bubble { 
+      background:linear-gradient(135deg, #8B0000, #C41E3A); 
+      color:#fff;
+      border-bottom-right-radius: 4px;
+    }
+    
+    .message.bot .message-bubble { 
+      background:#fff; 
+      color:#333;
+      border: 1px solid #e9ecef;
+      border-bottom-left-radius: 4px;
+    }
+    
+    .message-lang { 
+      font-size:10px; 
+      opacity:.7; 
+      margin-top:6px;
+      font-weight: 500;
+    }
+    
+    .chat-controls { 
+      padding:16px; 
+      border-top:1px solid #e9ecef; 
+      background:#fff; 
+      display:flex; 
+      justify-content:center;
+    }
+    
+    .control-btn { 
+      padding:12px 24px; 
+      border:none; 
+      border-radius:20px; 
+      font-weight:600; 
+      cursor:pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .control-btn.stop { 
+      background:linear-gradient(135deg, #ff4444, #cc0000); 
+      color:#fff;
+    }
+    
+    .control-btn.stop:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255,68,68,0.4);
+    }
+    
+    @media (max-width:768px){ 
+      .chat-interface{ 
+        width:calc(100% - 20px); 
+        right:10px; 
+        bottom:100px;
+        height: 500px;
+      }
+      .nav-menu { display: none; }
+      .hero-content h1 { font-size: 36px; }
+      .hero-content { left: 5%; max-width: 90%; }
+      .hero-image { display: none; }
+      .hero-banner { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-item">📞 Customer Care: 1800-419-4332</div>
+        <div class="header-top-item">✉️ support@idfcfirstbank.com</div>
+      </div>
+    </div>
+    <nav class="nav-bar">
+     <div class="logo">
+        <img src="IDFC.jpg" alt="Bank Logo" style="width: 150px; height: auto;">
+        IDFC FIRST Bank
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#loans">Loans</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#digital">Digital Banking</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <section class="hero-banner">
+    <div class="hero-content">
+      <h1>Banking Made Simple & Digital</h1>
+      <p>Experience seamless banking with India's fastest growing private sector bank</p>
+      <div class="hero-cta">
+        <button class="btn-primary">Open Account</button>
+        <button class="btn-secondary">Explore Products</button>
+      </div>
+    </div>
+    <div class="hero-image"></div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💳</div>
+          <h3>Credit Cards</h3>
+          <p>Discover premium credit cards with exclusive rewards and lifetime free options</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Home Loans</h3>
+          <p>Get your dream home with competitive interest rates and quick processing</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💰</div>
+          <h3>Savings Account</h3>
+          <p>Zero balance savings account with attractive interest rates and digital convenience</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>Auto Loans</h3>
+          <p>Drive your dream car with hassle-free auto loans and flexible repayment options</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3>Digital Banking</h3>
+          <p>Bank anytime, anywhere with our award-winning mobile banking app</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Investment</h3>
+          <p>Grow your wealth with mutual funds, fixed deposits, and investment solutions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section" id="products">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <h4>FIRST WOW! Credit Card</h4>
+          <p>Get 10X rewards on dining, movies, and shopping. Lifetime free with benefits.</p>
+        </div>
+        <div class="product-card">
+          <h4>FIRST Savings Account</h4>
+          <p>Zero balance account with monthly interest credits and no hidden charges.</p>
+        </div>
+        <div class="product-card">
+          <h4>Personal Loan</h4>
+          <p>Instant approval with flexible tenure up to 60 months and competitive rates.</p>
+        </div>
+        <div class="product-card">
+          <h4>Fixed Deposits</h4>
+          <p>Earn attractive returns with FDs starting from just ₹10,000 for all tenures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Savings Account</a></li>
+          <li><a href="#">Current Account</a></li>
+          <li><a href="#">Credit Cards</a></li>
+          <li><a href="#">Debit Cards</a></li>
+          <li><a href="#">Fixed Deposits</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Loans</h4>
+        <ul>
+          <li><a href="#">Home Loans</a></li>
+          <li><a href="#">Personal Loans</a></li>
+          <li><a href="#">Auto Loans</a></li>
+          <li><a href="#">Business Loans</a></li>
+          <li><a href="#">Loan Against Property</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Customer Care</a></li>
+          <li><a href="#">Branch Locator</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Company Overview</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">CSR Initiatives</a></li>
+          <li><a href="#">Investor Relations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 IDFC FIRST Bank. All Rights Reserved. | Terms & Conditions | Privacy Policy</p>
+    </div>
+  </footer>
+
+  <div class="voice-bot-widget">
+    <button id="botButton" class="bot-button" title="Talk to our Voice Assistant">🎙️</button>
+  </div>
+
+  <div id="chatInterface" class="chat-interface">
+    <div class="chat-header">
+      <div class="language-selector">
+        <button id="btnEnglish" class="lang-btn active">English</button>
+        <button id="btnHindi" class="lang-btn">हिंदी</button>
+      </div>
+      <button id="closeChat" class="close-chat">&times;</button>
+    </div>
+    <div id="statusIndicator" class="status-indicator">Select language and click microphone</div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="message bot">
+        <div class="message-bubble">
+          Hello! Select your preferred language and start speaking. You can change the language anytime.
+          <div class="message-lang">नमस्ते! अपनी भाषा चुनें और बोलना शुरू करें। आप कभी भी भाषा बदल सकते हैं।</div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-controls">
+      <button id="stopButton" class="control-btn stop" style="display:none;">Stop Speaking</button>
+    </div>
+  </div>
+
+  <script>
+   const LAMBDA_URL = 'https://bne36y45fhsixvq6mvnp2ynrqu0aiywl.lambda-url.ap-northeast-1.on.aws/';
+const LANGUAGES = {
+  'en-IN': { name:'English', flag:'EN', voiceLang:'en-IN' },
+  'hi-IN': { name:'Hindi', flag:'HI', voiceLang:'hi-IN' }
+};
+
+let isListening = false;
+let isProcessing = false;
+let isSpeaking = false;
+let currentRecognition = null;
+let currentLanguage = 'en-IN';
+let finalTranscript = '';
+let sessionId = 'session-' + Date.now();
+let conversationHistory = [];
+let currentAccountNumber = null;
+
+const botButton = document.getElementById('botButton');
+const chatInterface = document.getElementById('chatInterface');
+const closeChat = document.getElementById('closeChat');
+const chatMessages = document.getElementById('chatMessages');
+const statusIndicator = document.getElementById('statusIndicator');
+const stopButton = document.getElementById('stopButton');
+const btnEnglish = document.getElementById('btnEnglish');
+const btnHindi = document.getElementById('btnHindi');
+
+async function requestMicPermission() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(track => track.stop());
+    console.log('Microphone access granted');
+    return true;
+  } catch (err) {
+    console.error('Mic error:', err);
+    addMessage('bot', 'Microphone access denied. Please allow microphone in your browser settings.');
+    return false;
+  }
+}
+
+function initRecognition(lang) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    addMessage('bot', 'Speech recognition not supported. Please use Chrome or Edge.');
+    return null;
+  }
+  
+  const rec = new SpeechRecognition();
+  rec.lang = lang;
+  rec.continuous = false;
+  rec.interimResults = true;
+  rec.maxAlternatives = 1;
+
+  rec.onstart = function() {
+    finalTranscript = '';
+    console.log('Recognition started:', lang);
+  };
+
+  rec.onresult = function(e) {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const res = e.results[i];
+      if (res.isFinal) { 
+        finalTranscript = res[0].transcript; 
+      } else { 
+        interim = res[0].transcript; 
+      }
+    }
+    
+    if (finalTranscript.trim()) {
+      processUserInput(finalTranscript.trim(), currentLanguage);
+    } else if (interim.trim()) {
+      updateStatus('Listening...', 'listening');
+    }
+  };
+
+  rec.onerror = function(ev) {
+    console.warn('Recognition error:', ev.error);
+    if (ev.error === 'not-allowed') {
+      addMessage('bot', 'Microphone access denied. Please allow microphone access.');
+      stopListening();
+    }
+  };
+
+  rec.onend = function() {
+    if (isListening && !isProcessing && !finalTranscript.trim()) {
+      setTimeout(function() { 
+        if (isListening) startListeningInLanguage(currentLanguage); 
+      }, 120);
+    }
+  };
+  
+  return rec;
+}
+
+function startListeningInLanguage(lang) {
+  if (isProcessing || !isListening) return;
+  
+  currentLanguage = lang;
+  if (currentRecognition) { 
+    try { 
+      currentRecognition.stop(); 
+    } catch(e) {} 
+  }
+  
+  currentRecognition = initRecognition(lang);
+  if (!currentRecognition) return;
+  
+  try {
+    currentRecognition.start();
+    console.log('Listening in', LANGUAGES[lang].name);
+  } catch(e) { 
+    console.error(e); 
+  }
+}
+
+async function startListening() {
+  if (isSpeaking) window.speechSynthesis.cancel();
+  
+  const ok = await requestMicPermission(); 
+  if (!ok) return;
+  
+  isListening = true; 
+  finalTranscript = '';
+  botButton.classList.add('listening');
+  stopButton.style.display = 'block';
+  updateStatus('Speak now in ' + LANGUAGES[currentLanguage].name + '...', 'listening');
+  startListeningInLanguage(currentLanguage);
+}
+
+function stopListening() {
+  isListening = false;
+  botButton.classList.remove('listening');
+  stopButton.style.display = 'none';
+  if (currentRecognition) { 
+    try { 
+      currentRecognition.stop(); 
+    } catch(e) {} 
+  }
+  updateStatus('Click microphone to speak', '');
+}
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  
+  if (lang === 'en-IN') {
+    btnEnglish.classList.add('active');
+    btnHindi.classList.remove('active');
+  } else {
+    btnHindi.classList.add('active');
+    btnEnglish.classList.remove('active');
+  }
+  
+  if (isListening) {
+    startListeningInLanguage(lang);
+  }
+  
+  console.log('Language changed to:', LANGUAGES[lang].name);
+  updateStatus('Language: ' + LANGUAGES[lang].name, '');
+}
+
+async function processUserInput(text, displayLang) {
+  if (isProcessing || !text.trim()) return;
+  
+  stopListening();
+  isProcessing = true;
+  botButton.classList.add('processing');
+  const langInfo = LANGUAGES[displayLang] || LANGUAGES['en-IN'];
+  updateStatus('Processing in ' + langInfo.name + '...', 'processing');
+  addMessage('user', text, displayLang);
+
+  conversationHistory.push({
+    role: 'user',
+    content: text
+  });
+
+  const payload = { 
+    query: text, 
+    language: displayLang, 
+    languageName: langInfo.name, 
+    sessionId: sessionId,
+    conversationHistory: conversationHistory,
+    accountNumber: currentAccountNumber
+  };
+
+  try {
+    const resp = await fetch(LAMBDA_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    
+    if (!resp.ok) throw new Error('Server error: ' + resp.status);
+    
+    const data = await resp.json();
+    const answer = data.answer || 'Sorry, I could not process that.';
+    
+    if (data.accountNumber) {
+      currentAccountNumber = data.accountNumber;
+      console.log('Account number tracked:', currentAccountNumber);
+    }
+    
+    conversationHistory.push({
+      role: 'assistant',
+      content: answer
+    });
+    
+    if (conversationHistory.length > 20) {
+      conversationHistory = conversationHistory.slice(-20);
+    }
+    
+    addMessage('bot', answer, displayLang);
+    await speakText(answer, displayLang);
+    
+  } catch (err) {
+    console.error('Fetch error:', err);
+    const msg = displayLang === 'hi-IN'
+      ? 'क्षमा करें, कनेक्ट करने में समस्या है। कृपया फिर प्रयास करें।'
+      : 'Sorry, I am having trouble connecting. Please try again.';
+    addMessage('bot', msg, displayLang);
+    await speakText(msg, displayLang);
+  } finally {
+    isProcessing = false;
+    botButton.classList.remove('processing');
+    setTimeout(function() { 
+      if (chatInterface.classList.contains('active')) startListening(); 
+    }, 500);
+  }
+}
+
+function speakText(text, lang) {
+  return new Promise(function(resolve) {
+    if (!('speechSynthesis' in window)) return resolve();
+    
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = LANGUAGES[lang] ? LANGUAGES[lang].voiceLang : lang;
+    u.rate = 0.95; 
+    u.pitch = 1.0;
+    
+    u.onstart = function() { 
+      isSpeaking = true; 
+      updateStatus('Speaking...', 'speaking'); 
+    };
+    
+    u.onend = function() { 
+      isSpeaking = false; 
+      resolve(); 
+    };
+    
+    u.onerror = function() { 
+      isSpeaking = false; 
+      resolve(); 
+    };
+    
+    window.speechSynthesis.speak(u);
+  });
+}
+
+function addMessage(type, text, lang) {
+  const div = document.createElement('div');
+  div.className = 'message ' + type;
+  const bubble = document.createElement('div');
+  bubble.className = 'message-bubble';
+  bubble.textContent = text;
+  
+  if (lang && LANGUAGES[lang]) {
+    const l = document.createElement('div');
+    l.className = 'message-lang';
+    l.textContent = LANGUAGES[lang].flag + ' ' + LANGUAGES[lang].name;
+    bubble.appendChild(l);
+  }
+  
+  div.appendChild(bubble);
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function updateStatus(text, cls) {
+  statusIndicator.textContent = text;
+  statusIndicator.className = 'status-indicator ' + (cls || '');
+}
+
+botButton.addEventListener('click', function() {
+  chatInterface.classList.add('active');
+  setTimeout(function() { 
+    startListening(); 
+  }, 250);
+});
+
+closeChat.addEventListener('click', function() {
+  stopListening();
+  window.speechSynthesis.cancel();
+  chatInterface.classList.remove('active');
+});
+
+stopButton.addEventListener('click', function() { 
+  stopListening(); 
+});
+
+btnEnglish.addEventListener('click', function() {
+  setLanguage('en-IN');
+});
+
+btnHindi.addEventListener('click', function() {
+  setLanguage('hi-IN');
+});
+
+console.log('Voice Assistant Ready with Conversation History');
+  </script>
+</body>
+</html>
+
+
