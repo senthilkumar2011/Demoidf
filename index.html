@@ -586,20 +586,20 @@ function getTimeGreeting(lang) {
 async function greetUser(){
   try { window.speechSynthesis.cancel(); } catch(_) {}
 
+  // English time-based greeting + main welcome
   const enTime = getTimeGreeting('en-IN');
   await speakText(
-    `${enTime} Hello! Select your preferred language and start speaking. You can change the language anytime.`,
+    `${enTime} Welcome to IDFC Bank. How can I help you today?`,
     'en-IN'
   );
-
-  await wait(7000);
-
+  // Hindi time-based greeting + main welcome
   const hiTime = getTimeGreeting('hi-IN');
   await speakText(
-    `${hiTime} नमस्ते! अपनी भाषा चुनें और बोलना शुरू करें। आप कभी भी भाषा बदल सकते हैं।`,
+    `${hiTime} आईडीएफसी बैंक में आपका स्वागत है। मैं आज आपकी किस प्रकार सहायता कर सकता हूँ?`,
     'hi-IN'
   );
 }
+
 
 /* ====== Mic / STT ====== */
 async function requestMicPermission() {
