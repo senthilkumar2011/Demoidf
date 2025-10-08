@@ -738,48 +738,76 @@ async function processUserInput(text, displayLang) {
     setTimeout(() => { if (chatInterface.classList.contains('active')) startListening(); }, 500);
   }
 }
-    / Expand acronyms for TTS so they are spelled out
-function normalizeForTTS(text, lang) {
-  // English: "IDFC" -> "I D F C"
-  // Hindi:   "IDFC" -> "आई डी एफ सी"
-  const enSpelled = 'I D F C';
-  const hiSpelled = 'आई डी एफ सी';
+   // --- Safe TTS normalizer: spell "IDFC" letter-by-letter ---
+function normalizeForTTS(input, lang) {
+  try {
+    const text = (input ?? '').toString();
 
-  // IDFC or iDfC etc., optionally with 's (e.g., IDFC's)
-  return text.replace(/\bIDFC('?s)?\b/gi, (_, apos) => {
-    const spelled = (lang === 'hi-IN') ? hiSpelled : enSpelled;
-    // Keep "'s" if present, so "IDFC's" -> "I D F C's"
-    return apos ? `${spelled}${apos}` : spelled;
-  });
+    // Guard language
+    const l = (lang === 'hi-IN') ? 'hi-IN' : 'en-IN';
+
+    // Spelled-out forms
+    const enSpelled = 'I D F C';
+    const hiSpelled = 'आई डी एफ सी';
+
+    // Regex: IDFC (any case) with optional "'s"
+    // Example matches: "IDFC", "idfc", "IDFC's"
+    return text.replace(/\bIDFC('?s)?\b/gi, function(match, grp1) {
+      const spelled = (l === 'hi-IN') ? hiSpelled : enSpelled;
+      return grp1 ? `${spelled}${grp1}` : spelled;
+    });
+  } catch (e) {
+    console.error('normalizeForTTS error:', e);
+    return input; // fail open
+  }
 }
+
 
 /* ====== TTS ====== */
 function speakText(text, lang) {
   return new Promise(function(resolve) {
     if (!('speechSynthesis' in window)) return resolve();
+
+    // Make sure we never throw here
     try { window.speechSynthesis.cancel(); } catch(_) {}
 
-    // 🔸 Normalize acronyms like "IDFC" before speaking
-    const say = normalizeForTTS(text, lang);
+    // Normalize acronyms like "IDFC"
+    const say = normalizeForTTS(text || '', lang || 'en-IN');
 
-    const u = new SpeechSynthesisUtterance(say);
-    u.lang = LANGUAGES[lang] ? LANGUAGES[lang].voiceLang : lang;
-    u.rate = 0.95; 
+    const voiceLang = (LANGUAGES && LANGUAGES[lang] && LANGUAGES[lang].voiceLang) ? 
+                       LANGUAGES[lang].voiceLang : (lang || 'en-IN');
+
+    let u;
+    try {
+      u = new SpeechSynthesisUtterance(say);
+    } catch (e) {
+      console.error('SpeechSynthesisUtterance error:', e);
+      return resolve();
+    }
+
+    u.lang  = voiceLang;
+    u.rate  = 0.95;
     u.pitch = 1.0;
 
-    u.onstart = function() { 
-      isSpeaking = true; 
-      updateStatus('Speaking...', 'speaking'); 
+    u.onstart = function() {
+      try {
+        isSpeaking = true;
+        updateStatus && updateStatus('Speaking...', 'speaking');
+      } catch(_) {}
     };
-    u.onend = function() { 
+    u.onend = function() { isSpeaking = false; resolve(); };
+    u.onerror = function(err) { 
+      console.warn('TTS error:', err); 
       isSpeaking = false; 
       resolve(); 
     };
-    u.onerror = function() { 
-      isSpeaking = false; 
-      resolve(); 
-    };
-    window.speechSynthesis.speak(u);
+
+    try {
+      window.speechSynthesis.speak(u);
+    } catch (e) {
+      console.error('speechSynthesis.speak error:', e);
+      resolve();
+    }
   });
 }
 
